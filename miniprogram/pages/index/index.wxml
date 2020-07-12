@@ -1,0 +1,118 @@
+<!-- index.wxml -->
+<view class="bg">
+    <view class='container'>
+        <view class="title">ycの天气</view>
+        <view class="refresh-time">最后更新于{{update_time}}</view>
+        <swiper class="swp-container" indicator-dots="{{true}}" indicator-active-color="#dd5044">
+            <swiper-item class="card" style="display: flex;flex-direction: column;">
+                <view class="today" style="background:linear-gradient({{bgcolor[t_wea_img][0]}},{{bgcolor[t_wea_img][1]}})">
+                    <view class="w-range" style="font-size:40rpx;display:flex;">
+                        <view style="flex:25">{{t_tem2}}℃-{{t_tem1}}℃</view>
+                        <view style="float:right;color:white;font-size:30rpx;flex:3">刷新</view>
+                        <image style="float:right; width:40rpx; height:40rpx;flex:2" class="refresh-icon" src='../../img/refresh.png' animation="{{animation}}" bindtap="refresh"></image>
+                    </view>
+                    <view class="weather" style="height:60%; text-align:center;padding:10rpx 0">
+                        <image class="w-icon" style="width:300rpx;height:300rpx" src='../../img/{{t_wea_img}}.png'></image>
+                        <view class="info" style="color:white;font-size:40rpx">{{t_wea}}</view>
+                    </view>
+                    <view class="realtime">
+                        <view class="degree" style="font-size: 100rpx;float:left">
+                            {{realtimeTemp}}℃
+                        </view>
+                        <view class="address" style="float:right">
+                            <image class="add-icon" style="width:40rpx;height:40rpx;padding-right:5rpx" src='../../img/address.png'></image>
+                            {{city}}
+                            <view class="week">{{t_week}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="yuce" style="display:flex;width:100%">
+                    <view style="flex:1;" class="col c1">
+                        <view class="day" style="padding:10rpx 0 30rpx 0">明天</view>
+                        <view class="dwea">
+                            <image class="dwea_img" src='../../img/{{d1_wea_img}}.png'></image>
+                            <view class="dw">{{d1_wea}}</view>
+                        </view>
+                        <view class="day" style="padding:35rpx 0">{{d1_tem2}}-{{d1_tem1}}</view>
+                    </view>
+                    <view style="flex:1;" class="col c2">
+                        <view class="day" style="padding:10rpx 0 30rpx 0">{{d2_week}}</view>
+                        <view class="dwea">
+                            <image class="dwea_img" src='../../img/{{d2_wea_img}}.png'></image>
+                            <view class="dw">{{d2_wea}}</view>
+                        </view>
+                        <view class="day" style="padding:35rpx 0">{{d2_tem2}}-{{d2_tem1}}</view>
+                    </view>
+                    <view style="flex:1" class="col c3">
+                        <view class="day" style="padding:10rpx 0 30rpx 0">{{d3_week}}</view>
+                        <view class="dwea">
+                            <image class="dwea_img" src='../../img/{{d3_wea_img}}.png'></image>
+                            <view class="dw">{{d3_wea}}</view>
+                        </view>
+                        <view class="day" style="padding:35rpx 0">{{d3_tem2}}-{{d3_tem1}}</view>
+                    </view>
+                </view>
+            </swiper-item>
+            <swiper-item class="card" style="display:flex;flex-direction:column;">
+                <view style="height:95%;display:flex;flex-direction:column;">
+                    <view style="flex: 1" class="p2_row">
+                        <image class="laba" style="width:40rpx;height:40rpx;padding:30rpx 0;" src='../../img/tips.png'></image>
+                        <view class='scroll_view_border'>
+                            <view class="srcoll_view" bindtap="textclick">{{t_tips}}</view>
+                        </view>
+                    </view>
+                    <view style="flex: 4" class="p2_row p2_r2">
+                        <view style="flex:1" class="p2_col col c1">
+                            <image class="p2_img" src='../../img/air.png'></image>
+                            <view class="more">空气质量：{{t_air_level}}</view>
+                        </view>
+                        <view style="flex:1" class="p2_col col c1">
+                            <image class="p2_img" src='../../img/qua.png'></image>
+                            <view class="more">质量指数：{{t_air}}</view>
+                        </view>
+                        <view style="flex:1" class="p2_col">
+                            <image class="p2_img" src='../../img/pm2.5.png'></image>
+                            <view class="more">PM2.5：{{t_air_pm25}}</view>
+                        </view>
+                    </view>
+                    <view style="flex: 4" class="p2_row p2_r2">
+                        <view style="flex:1" class="p2_col col c1">
+                            <image class="p2_img" src='../../img/tem.png'></image>
+                            <view class="more">{{t_tem2}}℃-{{t_tem1}}℃</view>
+                        </view>
+                        <view style="flex:1" class="p2_col col c1">
+                            <image class="p2_img" src='../../img/hum.png'></image>
+                            <view class="more">湿度：{{t_humidity}}</view>
+                        </view>
+                        <view style="flex:1" class="p2_col">
+                            <image class="p2_img" src='../../img/pre.png'></image>
+                            <view class="more">气压：{{t_pressure}}hPa</view>
+                        </view>
+                    </view>
+                    <view style="flex: 4" class="p2_row p2_r2">
+                        <view style="flex:1" class="p2_col col c1">
+                            <image class="p2_img" src='../../img/wind.png'></image>
+                            <view class="more">风向：{{t_win}}</view>
+                        </view>
+                        <view style="flex:1" class="p2_col col c1">
+                            <image class="p2_img" src='../../img/winm.png'></image>
+                            <view class="more">{{t_win_meter}}</view>
+                        </view>
+                        <view style="flex:1" class="p2_col">
+                            <image class="p2_img" src='../../img/visibility.png'></image>
+                            <view class="more">能见度：{{t_visibility}}</view>
+                        </view>
+                    </view>
+                </view>
+            </swiper-item>
+            <swiper-item style="display: flex;flex-direction: column;">
+            <view style="flex:0.5"></view>
+            <view style="color:white;text-align:center;flex:1;font-size:40rpx">一周气温趋势图</view>
+            <canvas class="canvas" canvas-id="graph" style="flex:3.5;"></canvas>
+            <view style="flex:3"></view>
+            <view style="flex:1;background-color:white;opacity: 0.8;text-align:center;font-size:40rpx">Copy Right 张逸辰. All Rights Reserved, 2020.7</view>
+            <view style="flex:1"></view>
+            </swiper-item>
+        </swiper>
+    </view>
+</view>
